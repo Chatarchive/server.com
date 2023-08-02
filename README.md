@@ -1,1 +1,1 @@
-# dcinside.com
+# server.com
