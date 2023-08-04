@@ -14,22 +14,27 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
     <style>
       /* 꾸미기 */
 
       /* 꾸미기 */
-      .card:hover {
-        transform: scale(1.05);
-      }
       .card {
-        transition: transform 0.1s ease-in-out;
+        transition: none; /* 마우스를 올렸을 때 효과 제거 */
+        font-size: 18px; /* 글씨 크기 조정 */
+        font-family: "Noto Sans KR", sans-serif; /* 다른 폰트 적용 (Noto Sans KR) */
+      }
+      .container {
+        padding: 20px;
+      }
+      .card-text {
+        margin-top: 10px;
       }
     </style>
+    <!-- 폰트 추가 -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -38,9 +43,34 @@
       <h4 class="text-white">채팅 로그를 저장합니다.</h4>
     </div>
     <!-- 여기 -->
-    
-        <!-- 두 개의 추가 카드를 여기에 추가 -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">음성 인식 결과</h5>
+              <p class="card-text" id="gist-content"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      // Gist API 호출하여 내용 가져오기
+      fetch("https://api.github.com/gists/8572d313385adaa999afdc0d7b2813b7")
+        .then((response) => response.json())
+        .then((data) => {
+          // Gist의 내용 가져오기 성공시
+          const gistContent = data.files["question.txt"].content;
+          // 가져온 내용을 웹 페이지에 표시
+          document.getElementById("gist-content").innerText = gistContent;
+        })
+        .catch((error) => {
+          // Gist API 호출 실패시 에러 처리
+          console.error("Error fetching Gist content:", error);
+        });
+    </script>
   </body>
 </html>
