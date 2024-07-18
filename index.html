@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electric Field Visualization</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <canvas id="canvas" width="1800" height="1200"></canvas>
-    <div id="controls">
-        <label for="chargeInput">전하량 설정 :</label>
-        <input type="text" id="chargeInput" value="1">
-        <button id="infoButton">i</button>
-        <div id="info" style="display: none;">
-            <pre id="readme"></pre>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
